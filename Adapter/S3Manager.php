@@ -1,20 +1,15 @@
 <?php
 namespace Flagbit\FlysystemS3\Adapter;
- 
-use \Magento\Framework\ObjectManagerInterface;
 
-use \League\Flysystem\AwsS3v3\AwsS3Adapter;
 use \League\Flysystem\AwsS3v3\AwsS3AdapterFactory;
 use \Aws\S3\S3ClientFactory;
 
- 
 /**
  * Class S3Manager
  * @package Flagbit\FlysystemS3\Adapter
  */
 class S3Manager implements S3ManagerInterface
 {
-
     /**
      * @var AwsS3AdapterFactory
      */
@@ -27,7 +22,8 @@ class S3Manager implements S3ManagerInterface
 
     /**
      * S3Manager constructor
-     * @param ObjectManagerInterface $objectManager
+     * @param AwsS3AdapterFactory $awsS3AdapterFactory
+     * @param S3ClientFactory $s3ClientFactory
      */
     public function __construct(
         AwsS3AdapterFactory $awsS3AdapterFactory,
@@ -44,9 +40,10 @@ class S3Manager implements S3ManagerInterface
      * @param string $bucket
      * @param string $prefix
      * @param array $options
-     * @return AwsS3Adapter
+     * @return \League\Flysystem\AwsS3v3\AwsS3Adapter
      */
-    public function createS3Driver(array $s3config, string $bucket, string $prefix = '', array $options = []): AwsS3Adapter
+    public function createS3Driver(array $s3config, string $bucket, string $prefix = '', array $options = [])
+    : \League\Flysystem\AwsS3v3\AwsS3Adapter
     {
         $s3client = $this->s3ClientFactory->create(['args' => $s3config]);
 
@@ -58,6 +55,5 @@ class S3Manager implements S3ManagerInterface
                 'options' => $options
             ]
         );
-
     }
 }

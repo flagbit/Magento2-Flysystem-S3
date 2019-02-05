@@ -16,5 +16,10 @@ interface S3ManagerInterface
      * @param array $options
      * @return AwsS3Adapter
      */
-    public function createS3Driver(array $s3config, string $bucket, string $prefix = '', array $options = []);
+    public function createS3Driver(
+        array $s3config,
+        string $bucket,
+        string $prefix = '',
+        array $options = []
+    ): AwsS3Adapter;
 }

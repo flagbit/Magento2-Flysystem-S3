@@ -7,7 +7,8 @@ use \Magento\Framework\App\Config\ScopeConfigInterface;
  * Flysystem S3 Config Helper
  * @package Flagbit\FlysystemS3\Helper
  */
-class Config {
+class Config
+{
 
     /**
      * @var ScopeConfigInterface

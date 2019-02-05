@@ -13,7 +13,8 @@ use \Psr\Log\LoggerInterface;
  * hooks event flagbit_flysystem_create_after
  * @package Flagbit\FlysystemS3\Observer
  */
-class S3Observer implements ObserverInterface {
+class S3Observer implements ObserverInterface
+{
     /**
      * @var FilesystemAdapterFactory
      */
@@ -60,7 +61,7 @@ class S3Observer implements ObserverInterface {
         try {
             $source = $observer->getEvent()->getData('source');
 
-            if($source === 's3') {
+            if ($source === 's3') {
                 $manager = $observer->getEvent()->getData('manager');
 
                 $clientConfig = $this->_s3ConfigHelper->getS3ClientConfig();
@@ -72,9 +73,8 @@ class S3Observer implements ObserverInterface {
                     $bucket,
                     $prefix
                 );
-            
-                $adapter = $this->_flysystemFactory->create($driver);
 
+                $adapter = $this->_flysystemFactory->create($driver);
                 $manager->setAdapter($adapter);
             }
         } catch (\Exception $e) {
