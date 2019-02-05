@@ -55,7 +55,7 @@ class S3Observer implements ObserverInterface {
      * @param Observer $observer
      * @return void
      */
-    public function execute(Observer $observer)
+    public function execute(Observer $observer): void
     {
         try {
             $source = $observer->getEvent()->getData('source');
@@ -79,7 +79,6 @@ class S3Observer implements ObserverInterface {
             }
         } catch (\Exception $e) {
             $this->_logger->critical($e->getMessage());
-            return null;
         }
     }
 }

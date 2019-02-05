@@ -3,17 +3,17 @@ namespace Flagbit\FlysystemS3\Test\Unit\Adapter;
 
 use \PHPUnit\Framework\MockObject\MockObject;
 use \PHPUnit\Framework\TestCase;
-use \Magento\Framework\App\ObjectManager;
 use \Flagbit\FlysystemS3\Adapter\S3Manager;
 use \League\Flysystem\AwsS3v3\AwsS3Adapter;
+use \League\Flysystem\AwsS3v3\AwsS3AdapterFactory;
 use \Aws\S3\S3Client;
 
 class FilesystemManagerTest extends TestCase
 {
     /**
-     * @var ObjectManager|MockObject
+     * @var AwsS3AdapterFactory|MockObject
      */
-    protected $_objectManagerMock;
+    protected $_awsS3AdapterFactoryMock;
 
     /**
      * @var AwsS3Adapter|MockObject
@@ -27,7 +27,7 @@ class FilesystemManagerTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->_objectManagerMock = $this->getMockBuilder(ObjectManager::class)
+        $this->_awsS3AdapterFactoryMock = $this->getMockBuilder(AwsS3AdapterFactory::class)
             ->disableOriginalConstructor()
             ->setMethods(['create'])
             ->getMock();
@@ -37,7 +37,7 @@ class FilesystemManagerTest extends TestCase
             ->getMock();
 
         $this->_object = new S3Manager(
-            $this->_objectManagerMock
+            $this->_awsS3AdapterFactoryMock
         );
     }
 
@@ -56,9 +56,9 @@ class FilesystemManagerTest extends TestCase
 
         $s3ClientResult = S3Client::factory($s3config);
 
-        $this->_objectManagerMock->expects($this->once())
+        $this->_awsS3AdapterFactoryMock->expects($this->once())
             ->method('create')
-            ->with(AwsS3Adapter::class, [
+            ->with([
                 'client' => $s3ClientResult,
                 'bucket' => $bucket,
                 'prefix' => $prefix,

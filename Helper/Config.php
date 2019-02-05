@@ -33,7 +33,7 @@ class Config {
     /**
      * @return string
      */
-    public function getS3Key()
+    public function getS3Key(): string
     {
         return (string)$this->_scopeConfig->getValue(self::XPATH_CONFIG_S3_KEY);
     }
@@ -41,7 +41,7 @@ class Config {
     /**
      * @return string
      */
-    public function getS3Secret()
+    public function getS3Secret(): string
     {
         return (string)$this->_scopeConfig->getValue(self::XPATH_CONFIG_S3_SECRET);
     }
@@ -49,7 +49,7 @@ class Config {
     /**
      * @return string
      */
-    public function getS3Region()
+    public function getS3Region(): string
     {
         return (string)$this->_scopeConfig->getValue(self::XPATH_CONFIG_S3_REGION);
     }
@@ -57,7 +57,7 @@ class Config {
     /**
      * @return string
      */
-    public function getS3Version()
+    public function getS3Version(): string
     {
         return (string)$this->_scopeConfig->getValue(self::XPATH_CONFIG_S3_VERSION);
     }
@@ -65,7 +65,7 @@ class Config {
     /**
      * @return string
      */
-    public function getS3Bucket()
+    public function getS3Bucket(): string
     {
         return (string)$this->_scopeConfig->getValue(self::XPATH_CONFIG_S3_BUCKET);
     }
@@ -73,7 +73,7 @@ class Config {
     /**
      * @return string
      */
-    public function getS3Prefix()
+    public function getS3Prefix(): string
     {
         return (string)$this->_scopeConfig->getValue(self::XPATH_CONFIG_S3_PREFIX);
     }
@@ -81,7 +81,7 @@ class Config {
     /**
      * @return array
      */
-    public function getS3ClientConfig()
+    public function getS3ClientConfig(): array
     {
         return [
             'credentials' => [
