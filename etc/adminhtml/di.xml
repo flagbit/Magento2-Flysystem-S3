@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Flagbit\Flysystem\Model\Config\Source\Adapter">
+        <arguments>
+            <argument name="adapters" xsi:type="array">
+                <item name="s3" xsi:type="array">
+                    <item name="title" xsi:type="string">AWS S3</item>
+                    <item name="identifier" xsi:type="string">s3</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>
