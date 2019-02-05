@@ -7,6 +7,7 @@ use \Flagbit\FlysystemS3\Adapter\S3Manager;
 use \League\Flysystem\AwsS3v3\AwsS3Adapter;
 use \League\Flysystem\AwsS3v3\AwsS3AdapterFactory;
 use \Aws\S3\S3Client;
+use \Aws\S3\S3ClientFactory;
 
 class FilesystemManagerTest extends TestCase
 {
@@ -19,6 +20,16 @@ class FilesystemManagerTest extends TestCase
      * @var AwsS3Adapter|MockObject
      */
     protected $_awsS3AdapterMock;
+
+    /**
+     * @var S3ClientFactory|MockObject
+     */
+    protected $_s3ClientFactoryMock;
+
+    /**
+     * @var S3Client|MockObject
+     */
+    protected $_s3ClientMock;
 
     /**
      * @var S3Manager
@@ -36,8 +47,18 @@ class FilesystemManagerTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
+        $this->_s3ClientFactoryMock = $this->getMockBuilder(S3ClientFactory::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['create'])
+            ->getMock();
+
+        $this->_s3ClientMock = $this->getMockBuilder(S3Client::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $this->_object = new S3Manager(
-            $this->_awsS3AdapterFactoryMock
+            $this->_awsS3AdapterFactoryMock,
+            $this->_s3ClientFactoryMock
         );
     }
 
@@ -54,12 +75,15 @@ class FilesystemManagerTest extends TestCase
         $bucket = 'test';
         $prefix = 'test';
 
-        $s3ClientResult = S3Client::factory($s3config);
+        $this->_s3ClientFactoryMock->expects($this->once())
+            ->method('create')
+            ->with(['args' => $s3config])
+            ->willReturn($this->_s3ClientMock);
 
         $this->_awsS3AdapterFactoryMock->expects($this->once())
             ->method('create')
             ->with([
-                'client' => $s3ClientResult,
+                'client' => $this->_s3ClientMock,
                 'bucket' => $bucket,
                 'prefix' => $prefix,
                 'options' => []
