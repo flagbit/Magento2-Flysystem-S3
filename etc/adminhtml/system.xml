@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="flagbit_flysystem" translate="label" type="text" sortOrder="6000" showInDefault="1" showInWebsite="1" showInStore="0">
+            <group id="s3" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>AWS S3</label>
+                <field id="key" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Key</label>
+                </field>
+                <field id="secret" translate="label" type="password" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Secret</label>
+                </field>
+                <field id="region" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Region</label>
+                </field>
+                <field id="version" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Version</label>
+                </field>
+                <field id="bucket" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Bucket Name</label>
+                </field>
+                <field id="prefix" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Path Prefix</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
