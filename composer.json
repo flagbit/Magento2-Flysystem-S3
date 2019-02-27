@@ -21,7 +21,7 @@
       "php": ">=7.1.0",
       "league/flysystem": "1.0.43",
       "league/flysystem-aws-s3-v3": "^1.0",
-      "flagbit/magento2-flysystem": "^0.1.7"
+      "flagbit/magento2-flysystem": ">=0.1.7"
     },
     "require-dev": {
       "roave/security-advisories": "dev-master"
@@ -38,4 +38,3 @@
       "sort-packages": true
     }
   }
-  
