@@ -56,7 +56,7 @@ class S3Observer implements ObserverInterface
      * @param Observer $observer
      * @return void
      */
-    public function execute(Observer $observer): void
+    public function execute(Observer $observer)
     {
         try {
             $source = $observer->getEvent()->getData('source');
